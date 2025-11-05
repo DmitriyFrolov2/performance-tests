@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  script:
+    build:
+      dockerfile: Dockerfile.compose-example
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
