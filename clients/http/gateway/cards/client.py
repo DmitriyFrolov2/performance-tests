@@ -4,14 +4,14 @@ from httpx import Response
 
 from clients.http.client import HTTPClient
 
-class IssueVirtualCardDict(TypedDict):
+class IssueVirtualCardRequestDict(TypedDict):
     """
     Структура данных для создания виртуальной карты
     """
     userId: str
     accountId: str
 
-class IssuePhysicalCardDict(TypedDict):
+class IssuePhysicalCardRequestDict(TypedDict):
     """
     Структура данных для создания физической карты
     """
@@ -23,7 +23,7 @@ class CardsGatewayHTTPClient(HTTPClient):
     HTTP клиент для работы с API карт
     """
 
-    def issue_virtual_card_api(self,request:IssueVirtualCardDict)->Response:
+    def issue_virtual_card_api(self,request:IssueVirtualCardRequestDict)->Response:
         """
         Создание виртуальной карты
         :param request: Идентификаторы пользователя.
@@ -33,7 +33,7 @@ class CardsGatewayHTTPClient(HTTPClient):
 
 
 
-    def issue_physical_card_api(self,request:IssuePhysicalCardDict)->Response:
+    def issue_physical_card_api(self,request:IssuePhysicalCardRequestDict)->Response:
         """
         Создание физической(дебетовой) карты
         :param request: Идентификаторы пользователя.
