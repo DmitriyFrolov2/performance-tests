@@ -5,18 +5,22 @@ from httpx import Response
 from clients.http.client import HTTPClient
 from clients.http.gateway.client import build_gateway_http_client
 
+
 class DocumentDict(TypedDict):
     """Словарь с данными документа."""
     url: str
     document: str
 
+
 class GetTariffDocumentResponseDict(TypedDict):
     """Словарь с ответом на запрос тарифного документа."""
     tariff: DocumentDict
 
+
 class GetContractDocumentResponseDict(TypedDict):
     """Словарь с ответом на запрос договора."""
     contract: DocumentDict
+
 
 class DocumentsGatewayHTTPClient(HTTPClient):
     """
@@ -60,8 +64,7 @@ class DocumentsGatewayHTTPClient(HTTPClient):
         return response.json()
 
 
-
-def build_documents_gateway_http_client()->DocumentsGatewayHTTPClient:
+def build_documents_gateway_http_client() -> DocumentsGatewayHTTPClient:
     """
     Функция создаёт экземпляр DocumentsGatewayHTTPClient с уже настроенным HTTP-клиентом.
 
