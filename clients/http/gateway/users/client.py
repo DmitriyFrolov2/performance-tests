@@ -4,7 +4,7 @@ from httpx import Response
 
 from clients.http.client import HTTPClient
 from clients.http.gateway.client import build_gateway_http_client
-from clients.http.gateway.users.schema import (  # Добавили импорт моделей
+from clients.http.gateway.users.schema import (
     GetUserResponseSchema,
     CreateUserRequestSchema,
     CreateUserResponseSchema
@@ -45,13 +45,7 @@ class UsersGatewayHTTPClient(HTTPClient):
 
     # Теперь используем pydantic-модель для аннотации
     def create_user(self) -> CreateUserResponseSchema:
-        request = CreateUserRequestSchema(  # Используем pydantic-модель для отправки запроса
-            email=f"user.{time.time()}@example.com",
-            last_name="string",
-            first_name="string",
-            middle_name="string",
-            phone_number="string"
-        )
+        request = CreateUserRequestSchema()  # Используем pydantic-модель для отправки запроса
         response = self.create_user_api(request)
         # Инициализируем модель через валидацию JSON строки
         return CreateUserResponseSchema.model_validate_json(response.text)
