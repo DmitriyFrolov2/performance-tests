@@ -7,7 +7,8 @@ from contracts.services.gateway.operations.rpc_get_operation_receipt_pb2 import 
 from contracts.services.gateway.operations.rpc_make_top_up_operation_pb2 import MakeTopUpOperationRequest, \
     MakeTopUpOperationResponse
 from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserRequest, CreateUserResponse
-from contracts.services.gateway.accounts.rpc_open_debit_card_account_pb2 import OpenDebitCardAccountRequest,OpenDebitCardAccountResponse
+from contracts.services.gateway.accounts.rpc_open_debit_card_account_pb2 import OpenDebitCardAccountRequest, \
+    OpenDebitCardAccountResponse
 from contracts.services.gateway.users.users_gateway_service_pb2_grpc import UsersGatewayServiceStub
 from contracts.services.operations.operation_pb2 import OperationStatus
 from tools.fakers import fake  # Используем генератор фейковых данных, созданный ранее
@@ -32,7 +33,6 @@ create_user_request = CreateUserRequest(
 create_user_response: CreateUserResponse = users_gateway_service.CreateUser(create_user_request)
 print('Create user response:', create_user_response)
 
-
 # 2. Открываем дебитовый счёт на созданного пользователя
 open_debit_card_account_request = OpenDebitCardAccountRequest(user_id=create_user_response.user.id)
 open_debit_card_account_response: OpenDebitCardAccountResponse = accounts_gateway_service.OpenDebitCardAccount(
@@ -52,11 +52,11 @@ make_to_up_operation_response: MakeTopUpOperationResponse = operations_gateway_s
 )
 print('Make to up operation response:', make_to_up_operation_response)
 
-
 # 4 Получение чека по операции
 get_operation_receipt_request = GetOperationReceiptRequest(
     operation_id=make_to_up_operation_response.operation.id
 )
-get_operation_receipt_response: GetOperationReceiptResponse = operations_gateway_service.GetOperationReceipt(get_operation_receipt_request)
+get_operation_receipt_response: GetOperationReceiptResponse = operations_gateway_service.GetOperationReceipt(
+    get_operation_receipt_request)
 
 print("Get operation receipt response:", get_operation_receipt_response)
