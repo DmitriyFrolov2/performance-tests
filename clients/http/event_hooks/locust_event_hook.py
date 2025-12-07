@@ -46,7 +46,7 @@ def locust_response_event_hook(environment: Environment):
         # Определяем размер тела ответа (можно заменить на 0, если не нужно)
         response_length = len(response.read())
 
-        # Отправляем событие в Locust
+        # Отправляем событие в Locust. Сбор метрик
         environment.events.request.fire(
             name=f"{request.method} {route}",  # Имя запроса (метод + логическое имя маршрута)
             context=None,  # Контекст (опционально, можно использовать для расширений)
