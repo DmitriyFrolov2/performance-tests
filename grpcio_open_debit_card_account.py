@@ -4,8 +4,8 @@ from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserReque
 from contracts.services.gateway.users.rpc_get_user_pb2 import GetUserRequest
 from contracts.services.gateway.users.users_gateway_service_pb2_grpc import UsersGatewayServiceStub
 from contracts.services.gateway.accounts.accounts_gateway_service_pb2_grpc import AccountsGatewayServiceStub
-from contracts.services.gateway.accounts.rpc_open_debit_card_account_pb2 import OpenDebitCardAccountRequest, OpenDebitCardAccountResponse
-
+from contracts.services.gateway.accounts.rpc_open_debit_card_account_pb2 import OpenDebitCardAccountRequest, \
+    OpenDebitCardAccountResponse
 
 from tools.fakers import fake  # Используем генератор фейковых данных, созданный ранее
 
@@ -33,7 +33,6 @@ get_user_request = GetUserRequest(id=create_user_response.user.id)
 
 # создаем объект запроса
 open_debit_card_request = OpenDebitCardAccountRequest(user_id=create_user_response.user.id)
-#Затем отправляем запрос через клиент
+# Затем отправляем запрос через клиент
 open_debit_card: OpenDebitCardAccountResponse = accounts_gateway_service.OpenDebitCardAccount(open_debit_card_request)
-print("Open debit card account response:",open_debit_card)
-
+print("Open debit card account response:", open_debit_card)
