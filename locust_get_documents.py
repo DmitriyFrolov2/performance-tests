@@ -2,7 +2,7 @@ from locust import User, between, task
 
 # Импортируем схемы ответов, чтобы типизировать shared state
 from clients.http.gateway.accounts.schema import OpenSavingsAccountResponseSchema
-from clients.http.gateway.locust import GatewayHTTPSequentialTaskSet
+from clients.http.gateway.http_base_tasksets import GatewayHTTPSequentialTaskSet
 from clients.http.gateway.users.schema import CreateUserResponseSchema
 
 

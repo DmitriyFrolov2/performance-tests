@@ -1,7 +1,8 @@
 from locust import User, between, task
 
+from clients.grpc.gateway.grpc_base_tasksets import GatewayGRPCSequentialTaskSet
 # Импортируем схемы ответов, чтобы типизировать shared state
-from clients.grpc.gateway.locust import GatewayGRPCSequentialTaskSet
+
 from contracts.services.gateway.accounts.rpc_open_savings_account_pb2 import OpenSavingsAccountResponse
 from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserResponse
 
