@@ -1,10 +1,11 @@
-from locust import User, between, task
+from locust import task
 
 from clients.grpc.gateway.grpc_base_tasksets import GatewayGRPCSequentialTaskSet
 # Импортируем схемы ответов, чтобы типизировать shared state
 
 from contracts.services.gateway.accounts.rpc_open_savings_account_pb2 import OpenSavingsAccountResponse
 from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserResponse
+from tools.locust.user import LocustBaseUser
 
 
 class GetDocumentsSequentialTaskSet(GatewayGRPCSequentialTaskSet):
@@ -57,10 +58,8 @@ class GetDocumentsSequentialTaskSet(GatewayGRPCSequentialTaskSet):
         )
 
 
-class GetDocumentsScenarioUser(User):
+class GetDocumentsScenarioUser(LocustBaseUser):
     """
     Пользователь Locust, исполняющий последовательный сценарий получения документов.
     """
-    host = "localhost"
     tasks = [GetDocumentsSequentialTaskSet]
-    wait_time = between(1, 3)  # Имитируем паузы между выполнением сценариев
