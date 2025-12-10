@@ -1,8 +1,9 @@
-from locust import User, between, task
+from locust import task
 from clients.http.gateway.users.schema import CreateUserResponseSchema
 from clients.http.gateway.accounts.schema import OpenDepositAccountResponseSchema
 
 from clients.grpc.gateway.grpc_base_tasksets import GatewayGRPCTaskSet
+from tools.locust.user import LocustBaseUser
 
 
 class GetAccountsTaskSet(GatewayGRPCTaskSet):
@@ -30,7 +31,5 @@ class GetAccountsTaskSet(GatewayGRPCTaskSet):
         self.accounts_gateway_client.get_accounts(user_id=self.create_user_response.user.id)
 
 
-class GetAccountsScenarioUser(User):
-    host = "localhost"
+class GetAccountsScenarioUser(LocustBaseUser):
     tasks = [GetAccountsTaskSet]
-    wait_time = between(1, 3)
