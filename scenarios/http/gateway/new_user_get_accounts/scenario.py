@@ -1,6 +1,6 @@
 from locust import task
 from clients.http.gateway.users.schema import CreateUserResponseSchema
-from clients.http.gateway.http_base_tasksets import GatewayHTTPTaskSet
+from clients.http.gateway.locust import GatewayHTTPTaskSet
 from clients.http.gateway.accounts.schema import OpenDepositAccountResponseSchema
 from tools.locust.user import LocustBaseUser
 
