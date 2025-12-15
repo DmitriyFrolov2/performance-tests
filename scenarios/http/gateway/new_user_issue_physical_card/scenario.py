@@ -27,7 +27,7 @@ class IssuePhysicalCardSequentialTaskSet(GatewayHTTPSequentialTaskSet):
         )
 
     @task
-    def create_physical_card(self):
+    def issue_physical_card(self):
         if not self.open_open_debit_card_account_response:
             return
 
