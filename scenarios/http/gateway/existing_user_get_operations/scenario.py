@@ -7,8 +7,8 @@ from seeds.schema.result import SeedUserResult
 from tools.locust.user import LocustBaseUser
 
 
-@events.test_start.add_listener
-def on_test_start(environment: Environment, **kwargs):
+@events.init.add_listener
+def init(environment: Environment, **kwargs):
     seeds_scenario = ExistingUserGetOperationsSeedsScenario()
     seeds_scenario.build()
     environment.seeds = seeds_scenario.load()
