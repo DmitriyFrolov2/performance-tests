@@ -1,14 +1,14 @@
 from locust import task
-from clients.http.gateway.users.schema import CreateUserResponseSchema
-from clients.http.gateway.accounts.schema import OpenDepositAccountResponseSchema
 
+from contracts.services.gateway.accounts.rpc_open_deposit_account_pb2 import OpenDepositAccountResponse
+from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserResponse
 from clients.grpc.gateway.locust import GatewayGRPCTaskSet
 from tools.locust.user import LocustBaseUser
 
 
 class GetAccountsTaskSet(GatewayGRPCTaskSet):
-    create_user_response: CreateUserResponseSchema | None = None
-    open_deposit_account_response: OpenDepositAccountResponseSchema | None = None
+    create_user_response: CreateUserResponse | None = None
+    open_deposit_account_response: OpenDepositAccountResponse | None = None
 
     @task(2)
     def create_user(self):
