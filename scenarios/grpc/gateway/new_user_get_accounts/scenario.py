@@ -2,7 +2,7 @@ from locust import task
 from clients.http.gateway.users.schema import CreateUserResponseSchema
 from clients.http.gateway.accounts.schema import OpenDepositAccountResponseSchema
 
-from clients.grpc.gateway.grpc_base_tasksets import GatewayGRPCTaskSet
+from clients.grpc.gateway.locust import GatewayGRPCTaskSet
 from tools.locust.user import LocustBaseUser
 
 

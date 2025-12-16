@@ -10,9 +10,7 @@ from tools.locust.user import LocustBaseUser
 @events.init.add_listener
 def init(environment: Environment, **kwargs):
     seeds_scenario = ExistingUserIssueVirtualCardSeedsScenario()
-
     seeds_scenario.build()
-
     environment.seeds = seeds_scenario.load()
 
 
@@ -30,8 +28,10 @@ class IssueVirtualCardTaskSet(GatewayHTTPTaskSet):
 
     @task(1)
     def issue_virtual_card(self):
-        self.cards_gateway_client.issue_virtual_card(user_id=self.seed_user.user_id,
-                                                     account_id=self.seed_user.debit_card_accounts[0].account_id)
+        self.cards_gateway_client.issue_virtual_card(
+            user_id=self.seed_user.user_id,
+            account_id=self.seed_user.debit_card_accounts[0].account_id
+        )
 
 
 class IssueVirtualCardScenarioUser(LocustBaseUser):
