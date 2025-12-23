@@ -4,7 +4,7 @@ from faker import Faker
 fake = Faker()
 user_data = {
     "name": fake.name(),
-    "email":
+    "email": fake.email()
 
 }
 print(fake.name())

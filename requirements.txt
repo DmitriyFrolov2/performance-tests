@@ -1,0 +1,4 @@
+grpcio==1.73.1
+grpcio-tools==1.73.1
+gevent==25.5.1
+greenlet==3.2.3
