@@ -24,3 +24,4 @@ get_documents_response = documents_gateway_client.get_contract_document(
 )
 
 print("Get documents", get_documents_response)
+
