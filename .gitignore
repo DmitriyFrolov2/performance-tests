@@ -204,3 +204,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Locust
+dumps
+locust_*.csv
+locust_*.json
+report.html
+
+# Mac OS
+.DS_Store
