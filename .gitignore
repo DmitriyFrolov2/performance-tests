@@ -213,3 +213,6 @@ report.html
 
 # Mac OS
 .DS_Store
+
+#Training and example files - not part of the project
+training_examples
