@@ -7,6 +7,7 @@ from clients.http.gateway.users.schema import (
     CreateUserRequestSchema,
     CreateUserResponseSchema
 )
+from tools.routes import APIRoutes
 
 
 class UsersGatewayHTTPClient(HTTPClient):
@@ -19,12 +20,12 @@ class UsersGatewayHTTPClient(HTTPClient):
         Получить данные пользователя по его user_id.
 
         :param user_id: Идентификатор пользователя.
-        :return: Ответ от сервера (объект httpx.Response).
+        :return: Ответ от сервера
         """
 
         return self.get(
-            f"/api/v1/users/{user_id}",
-            extensions=HTTPClientExtensions(route="/api/v1/users/{user_id}")  # Явно передаём логическое имя маршрута
+            f"{APIRoutes.USERS}/{user_id}",
+            extensions=HTTPClientExtensions(route=f"{APIRoutes.USERS}/{{user_id}}")
         )
 
     # Остальной код без изменений
@@ -35,10 +36,10 @@ class UsersGatewayHTTPClient(HTTPClient):
         Создание нового пользователя.
 
         :param request: Pydantic-модель с данными нового пользователя.
-        :return: Ответ от сервера (объект httpx.Response).
+        :return: Ответ от сервера
         """
         # Сериализуем модель в словарь с использованием alias
-        return self.post("/api/v1/users", json=request.model_dump(by_alias=True))
+        return self.post(APIRoutes.USERS, json=request.model_dump(by_alias=True))
 
     def get_user(self, user_id: str) -> GetUserResponseSchema:
         response = self.get_user_api(user_id)
