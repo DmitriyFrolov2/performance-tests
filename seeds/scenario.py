@@ -6,7 +6,7 @@ from seeds.schema.plan import SeedsPlan
 from seeds.schema.result import SeedsResult
 from tools.logger import get_logger
 
-loggger = get_logger("SEEDS_SCENARIO")
+logger = get_logger("SEEDS_SCENARIO")
 
 
 class SeedsScenario(ABC):
@@ -46,18 +46,18 @@ class SeedsScenario(ABC):
         Сохраняет результат сидинга в файл.
         :param result: Объект SeedsResult, содержащий сгенерированные данные.
         """
-        loggger.info(f"[{self.scenario}] Savings seeding result to file")
+        logger.info(f"[{self.scenario}] Savings seeding result to file")
         save_seeds_result(result=result, scenario=self.scenario)
-        loggger.info(f"[{self.scenario}] Seeding result saved successfully")
+        logger.info(f"[{self.scenario}] Seeding result saved successfully")
 
     def load(self) -> SeedsResult:
         """
         Загружает результаты сидинга из файла.
         :return: Объект SeedsResult, содержащий данные, загруженные из файла.
         """
-        loggger.info(f"[{self.scenario}] Loading seeding from file")
+        logger.info(f"[{self.scenario}] Loading seeding from file")
         result = load_seeds_result(scenario=self.scenario)
-        loggger.info(f"[{self.scenario}] Seeding result loaded successfully")
+        logger.info(f"[{self.scenario}] Seeding result loaded successfully")
         return result
 
     def build(self) -> None:
@@ -65,7 +65,7 @@ class SeedsScenario(ABC):
         Генерирует данные с помощью билдера, используя план сидинга, и сохраняет результат.
         """
         plan_json = self.plan.model_dump_json(indent=2, exclude_defaults=True)
-        loggger.info(f"[{self.scenario}] Starting seeding data generation for plan:{plan_json} ")
+        logger.info(f"[{self.scenario}] Starting seeding data generation for plan:{plan_json} ")
         result = self.builder.build(self.plan)
-        loggger.info(f"[{self.scenario}] Seeding data generation completed")
+        logger.info(f"[{self.scenario}] Seeding data generation completed")
         self.save(result)

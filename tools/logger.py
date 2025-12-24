@@ -5,7 +5,7 @@ def get_logger(name: str) -> logging.Logger:
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
 
-    if logger.hasHandlers():
+    if not logger.hasHandlers():
         handler = logging.StreamHandler()
         handler.setLevel(logging.DEBUG)
 
