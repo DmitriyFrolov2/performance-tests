@@ -210,7 +210,7 @@ dumps
 locust_*.csv
 locust_*.json
 report.html
-
+reports/
 # Mac OS
 .DS_Store
 
