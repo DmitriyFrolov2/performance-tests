@@ -65,26 +65,51 @@ jobs:
 
       # 7. Создаём папку, куда будет сохранён HTML-отчёт по результатам теста
       - name: Create report directory
-        run: mkdir -p ./reports/${{ github.run_id}}
+        run: mkdir -p ./reports/${{ github.run_id }}
 
       # 8. Запускаем Locust с выбранным конфигурационным файлом и сохраняем HTML-отчёт
       - name: Run load tests and generate HTML report
-        run: locust --config=${{ github.event.inputs.SCENARIO }} --html=./reports/${{ github.run_id}}/index.html
+        run: locust --config=${{ github.event.inputs.SCENARIO }} --html=./reports/${{ github.run_id }}/index.html
 
-      # 9. Деплой HTML-отчёта в GitHub Pages, чтобы можно было посмотреть результаты в браузере
-      - name: Deploy HTML report to GitHub Pages
+      # 9. Сохраняем папку с отчётом как артефакт (важно: даже если тесты упали)
+      - name: Upload reports artifact
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
+        uses: actions/upload-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Авторизация для push в gh-pages
-          keep_files: true # Сохраняем предыдущие отчёты
-          publish_dir: reports # Публикуем директорию reports
-          publish_branch: gh-pages # На ветке gh-pages
+          name: reports
+          path: ./reports/${{ github.run_id }}
+          retention-days: 30
 
       # 10. Корректно останавливаем docker-контейнеры и удаляем volume-ы (например, temp-файлы)
       - name: Stop test services
         if: always()
         run: docker compose -f docker-compose.ci.yaml down -v
         working-directory: performance-qa-engineer-course
+
+  publish-report:
+    runs-on: ubuntu-latest
+    needs: run-tests
+    if: always()  # Запускается всегда, даже если run-tests упала
+
+    steps:
+      # 11. Клонируем репозиторий (нужен для доступа к gh-pages и токену)
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # 12. Скачиваем артефакт с отчётом, сохранённый в run-tests
+      - name: Download reports artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: reports
+          path: ./reports
+
+      # 13. Деплой HTML-отчёта в GitHub Pages, чтобы можно было посмотреть результаты в браузере
+      - name: Deploy HTML report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Авторизация для push в gh-pages
+          keep_files: true # Сохраняем предыдущие отчёты
+          publish_dir: ./reports # Публикуем содержимое скачанной папки reports
+          publish_branch: gh-pages # На ветке gh-pages
 
 
