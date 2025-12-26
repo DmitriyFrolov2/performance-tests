@@ -14,8 +14,8 @@ The tests are designed to evaluate the performance of a banking test environment
 
 ## Technologies Used
 
-🐍 **Python** • 🐞 **Locust** • 📦 **Pydantic** • ⚡ **gRPC / grpcio** • 🌐 **HTTP / HTTPX** • 🐳 **Docker** • 🐘 **PostgreSQL
-** • 🗄️ **Redis** • ☁️ **MinIO** • 📊 **Grafana + Prometheus** • 📈 **Load Testing Hub** • 🧩 **Kafka** • 🛠️ **Apache
+🐍 **Python** • 🐞 **Locust** • 📦 **Pydantic** • ⚡ **gRPC / grpcio** • 🌐 **HTTP / HTTPX** • 🐳 **Docker** • 🐘 PostgreSQL
+• 🗄️ **Redis** • ☁️ **MinIO** • 📊 **Grafana + Prometheus** • 📈 **Load Testing Hub** • 🧩 **Kafka** • 🛠️ **Apache
 ZooKeeper**
 
 ---
@@ -43,20 +43,20 @@ Tests are written in **Python** using **Locust** and follow core software develo
 
 **Principles and Best Practices**:
 
-- **SOLID** architecture — easy to maintain and extend.
-- **DRY** — shared logic in base classes; minimal duplication between HTTP and gRPC.
-- **KISS** — code remains readable even for complex flows.
+- **SOLID** architecture - easy to maintain and extend.
+- **DRY** - shared logic in base classes; minimal duplication between HTTP and gRPC.
+- **KISS** - code remains readable even for complex flows.
 - API clients are independent of Locust and reusable in other tests.
 - Flexible seeding system configurable via scenario plans.
 - Easy to add new scenarios, protocols, or load types.
 
 **Main Components**:
 
-- [**Scenarios**](./scenarios) — sequences of API calls simulating load.
-- [**API Clients**](./clients) — abstraction layer for HTTP and gRPC APIs.
-- [**Seeding**](./seeds) — automatic test data generation and management.
-- [**Contracts**](./contracts) — API/data model definitions for strict typing and validation.
-- [**Tools**](./tools) — fake data generators, shared Locust user logic, utilities.
+- [**Scenarios**](./scenarios) - sequences of API calls simulating load.
+- [**API Clients**](./clients) - abstraction layer for HTTP and gRPC APIs.
+- [**Seeding**](./seeds) - automatic test data generation and management.
+- [**Contracts**](./contracts) - API/data model definitions for strict typing and validation.
+- [**Tools**](./tools) - fake data generators, shared Locust user logic, utilities.
 
 ---
 
@@ -172,6 +172,7 @@ Grafana: http://localhost:3002
 Prometheus: http://localhost9090
 
 Pre-configured dashboards:в [Test Environment Repo](https://github.com/DmitriyFrolov2/performance-testing-environment).
+
 ![Пример графиков из отчёта Locust](screenshots/Grafana.png)
 
 ## CI/CD
