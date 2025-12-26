@@ -15,8 +15,8 @@
 
 ## Используемые технологии
 
-🐍 **Python** • 🐞 **Locust** • 📦 **Pydantic** • ⚡ **gRPC / grpcio** • 🌐 **HTTP / HTTPX** • 🐳 **Docker** • 🐘 **PostgreSQL
-** • 🗄️ **Redis** • ☁️ **MinIO** • 📊 **Grafana + Prometheus** • 📈 **Load Testing Hub** • 🧩 **Kafka** • 🛠️ **Apache
+🐍 **Python** • 🐞 **Locust** • 📦 **Pydantic** • ⚡ **gRPC / grpcio** • 🌐 **HTTP / HTTPX** • 🐳 **Docker** • 🐘 PostgreSQL
+ • 🗄️ **Redis** • ☁️ **MinIO** • 📊 **Grafana + Prometheus** • 📈 **Load Testing Hub** • 🧩 **Kafka** • 🛠️ **Apache
 ZooKeeper**
 
 ---
