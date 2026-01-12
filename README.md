@@ -207,6 +207,6 @@ load-testing-hub upload-locust-report --yaml-config=./scenarios/grpc/gateway/new
 Интеграция с GitHub Actions позволяет запускать сценарии в headless-режиме и автоматически публиковать отчёты на GitHub
 Pages.
 
-- **Публикация отчётов:** [Просмотреть на GitHub Pages](https://dmitriyfrolov2.github.io/performance-tests/20505250766/)
+- **Публикация отчётов:** [Просмотреть на GitHub Pages](https://dmitriyfrolov2.github.io/performance-tests/20925554294/)
 - **Конфигурация workflow:** [performance-tests.yml](./.github/workflows/performance-tests.yml)
 

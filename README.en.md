@@ -179,5 +179,5 @@ Pre-configured dashboards:в [Test Environment Repo](https://github.com/DmitriyF
 
 GitHub Actions allows headless scenario runs and automatic report publishing.
 
-- **Reports:** [Просмотреть на GitHub Pages](https://dmitriyfrolov2.github.io/performance-tests/20505250766/)
+- **Reports:** [Просмотреть на GitHub Pages](https://dmitriyfrolov2.github.io/performance-tests/20925554294/)
 - **Workflow config:** [performance-tests.yml](./.github/workflows/performance-tests.yml)
